@@ -28,9 +28,11 @@ def about():
     return render_template("about.html")
 
 
-@app.route("/post")
-def post():
-    return render_template("post.html")
+@app.route("/post/<int:post_id>")
+def post(post_id):
+    blogpost = BlogPost.query.filter_by(id=post_id).one()
+
+    return render_template("post.html", post=blogpost)
 
 
 @app.route("/contact")
