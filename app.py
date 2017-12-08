@@ -20,7 +20,9 @@ class BlogPost(db.Model):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    posts = BlogPost.query.all()
+
+    return render_template("index.html", posts=posts)
 
 
 @app.route("/about")
@@ -62,4 +64,4 @@ def publish():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)  # remove debug before production
