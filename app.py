@@ -20,7 +20,7 @@ class BlogPost(db.Model):
 
 @app.route("/")
 def index():
-    posts = BlogPost.query.all()
+    posts = BlogPost.query.order_by(BlogPost.date_posted.desc()).all()
 
     return render_template("index.html", posts=posts)
 
